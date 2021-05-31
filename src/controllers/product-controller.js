@@ -3,14 +3,11 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/fluent-validator');
+const repository = require('../repositories/product-repository');
 
 exports.get = (req, res, next) => {
-  Product.find(
-    {
-      active: true,
-    },
-    'title price slug tags',
-  )
+  repository
+    .get()
     .then((data) => {
       if (data === null) {
         res.status(404).send();
@@ -22,13 +19,8 @@ exports.get = (req, res, next) => {
 };
 
 exports.getBySlug = (req, res, next) => {
-  Product.findOne(
-    {
-      slug: req.params.slug,
-      active: true,
-    },
-    'title description price slug tags',
-  )
+  repository
+    .getBySlug(req.params.slug)
     .then((data) => {
       if (data === null) {
         res.status(404).send();
@@ -40,7 +32,8 @@ exports.getBySlug = (req, res, next) => {
 };
 
 exports.getById = (req, res, next) => {
-  Product.findById(req.params.id)
+  repository
+    .getById(req.params.id)
     .then((data) => {
       if (data === null) {
         res.status(404).send();
@@ -94,10 +87,8 @@ exports.post = (req, res, next) => {
     return;
   }
 
-  var product = new Product(req.body);
-  //TODO: Converter as tags para minusculas antes de gravar
-  product
-    .save()
+  repository
+    .create(req.body)
     .then((x) => {
       res
         .status(201)
@@ -120,15 +111,8 @@ exports.post = (req, res, next) => {
 exports.put = (req, res, next) => {
   const id = req.params.id;
 
-  Product.findByIdAndUpdate(id, {
-    $set: {
-      title: req.body.title,
-      description: req.body.description,
-      price: req.body.price,
-      tags: req.body.tags,
-      image: req.body.image,
-    },
-  })
+  repository
+    .update(id, req.body)
     .then((x) => {
       if (x === null) res.status(404).send();
       else
@@ -152,7 +136,8 @@ exports.delete = (req, res, next) => {
   const id = req.body.id;
 
   //TODO: Fazer com que o produto seja desativado (active: false) ao invés de uma deleção Física
-  Product.findByIdAndRemove(id)
+  repository
+    .delete(id)
     .then((x) => {
       if (x === null) res.status(404).send();
       else
