@@ -1,2 +1,3 @@
 1) npm init -y => Evita as perguntas e cria um arquivo package.json no padrão
 2) npm install http express debug --save
+3) npm install body-parser --save => Instalando o Body Parser que converte a resposta do Express para Json
