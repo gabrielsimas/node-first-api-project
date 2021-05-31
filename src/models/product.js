@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//TODO: Substituir a validação do Mongoose pelos objetos de Validação
 const schema = new Schema({
   title: {
     type: String,
