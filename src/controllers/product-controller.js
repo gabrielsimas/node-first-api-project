@@ -12,13 +12,48 @@ exports.get = (req, res, next) => {
     'title price slug',
   )
     .then((data) => {
-      res.status(200).send(data);
+      if (data === null) {
+        res.status(404).send();
+      } else {
+        res.status(200).send(data);
+      }
     })
     .catch((error) => {
-      res.status(400).send({
-        message: `Falha ao cadastrar os produtos`,
-        data: error,
-      });
+      res.status(400).send(error);
+    });
+};
+
+exports.getBySlug = (req, res, next) => {
+  Product.findOne(
+    {
+      slug: req.params.slug,
+      active: true,
+    },
+    'title description price slug tags',
+  )
+    .then((data) => {
+      if (data === null) {
+        res.status(404).send();
+      } else {
+        res.status(200).send(data);
+      }
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    });
+};
+
+exports.getById = (req, res, next) => {
+  Product.findById(req.params.id, 'title description price slug tags')
+    .then((data) => {
+      if (data === null) {
+        res.status(404).send();
+      } else {
+        res.status(200).send(data);
+      }
+    })
+    .catch((error) => {
+      res.status(400).send(error);
     });
 };
 
