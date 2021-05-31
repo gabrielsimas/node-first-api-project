@@ -109,7 +109,7 @@ exports.put = (req, res, next) => {
       if (x === null) res.status(404).send();
       else
         res
-          .status(201)
+          .status(200)
           .send({ message: `Produto ${x.title} atualizado com sucesso!` });
     })
     .catch((error) =>
@@ -125,5 +125,25 @@ exports.put = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-  res.status(201).send(req.body);
+  const id = req.body.id;
+
+  //TODO: Fazer com que o produto seja desativado (active: false) ao invés de uma deleção Física
+  Product.findByIdAndRemove(id)
+    .then((x) => {
+      if (x === null) res.status(404).send();
+      else
+        res
+          .status(200)
+          .send({ message: `Produto ${x.title} atualizado com sucesso!` });
+    })
+    .catch((error) =>
+      res
+        .status(400)
+        .send({ message: 'Falha ao atualizar o produto', data: error }),
+    );
+
+  res.status(200).send({
+    id: id,
+    item: req.body,
+  });
 };
