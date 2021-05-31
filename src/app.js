@@ -13,8 +13,12 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   },
 );
+
+// Carrega as Models do Mongoose
+const Product = require('./models/product');
 
 // Carrega as Rotas
 const indexRoute = require('./routes/index.js');
