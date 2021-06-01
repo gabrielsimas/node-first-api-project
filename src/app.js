@@ -26,11 +26,13 @@ const Order = require('./models/order');
 // Carrega as Rotas
 const indexRoute = require('./routes/index.js');
 const productRoute = require('./routes/product');
+const CustomerRoute = require('./routes/customer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', indexRoute);
 app.use('/products', productRoute);
+app.use('/customers', CustomerRoute);
 
 module.exports = app;
