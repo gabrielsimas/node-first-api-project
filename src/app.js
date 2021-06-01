@@ -3,20 +3,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const config = require('./config');
 const app = express();
 
 // Conecta ao Banco
 //TODO: Alterar os dados para variáveis de ambiente protegidas por senha
-mongoose.connect(
-  'mongodb+srv://gabrielsimas:J4n3c4554n1@nodeapicluster.bsxoi.gcp.mongodb.net/api-com-node',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-);
+mongoose.connect(config.connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 // Carrega as Models do Mongoose
 const Product = require('./models/product');
