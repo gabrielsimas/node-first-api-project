@@ -3,3 +3,4 @@
 3) npm install body-parser --save => Instalando o Body Parser que converte a resposta do Express para Json
 4) npm install mongoose --save => Instala o Mongoose
 5) npm install guid => Instala o Guid
+6) npm install md5 --save => Instala o MD5
