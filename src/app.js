@@ -27,12 +27,18 @@ const Order = require('./models/order');
 const indexRoute = require('./routes/index.js');
 const productRoute = require('./routes/product');
 const CustomerRoute = require('./routes/customer');
+const OrderRoute = require('./routes/order');
 
-app.use(bodyParser.json());
+app.use(
+  bodyParser.json({
+    limit: '5mb',
+  }),
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', indexRoute);
 app.use('/products', productRoute);
 app.use('/customers', CustomerRoute);
+app.use('/orders', OrderRoute);
 
 module.exports = app;
