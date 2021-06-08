@@ -4,3 +4,5 @@
 4) npm install mongoose --save => Instala o Mongoose
 5) npm install guid => Instala o Guid
 6) npm install md5 --save => Instala o MD5
+7) https://azure.microsoft.com/pt-br/features/storage-explorer/ => Baixa o Azure Storage Explorer
+8) npm install azure-storage@2.1.0 --save => Instala o Azure Storage SDK
