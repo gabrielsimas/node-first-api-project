@@ -9,11 +9,6 @@ exports.decodeToken = async (token) => {
   return data;
 };
 
-exports.decodeToken = async (token) => {
-  var data = await jwt.verify(token, global.SALT_KEY);
-  return data;
-};
-
 //TODO: Melhorar a segurança de passagem do Token! Passar apenas via Header
 exports.authorize = (req, res, next) => {
   var token =
