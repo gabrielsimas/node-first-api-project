@@ -6,3 +6,4 @@
 6) npm install md5 --save => Instala o MD5
 7) https://azure.microsoft.com/pt-br/features/storage-explorer/ => Baixa o Azure Storage Explorer
 8) npm install azure-storage@2.1.0 --save => Instala o Azure Storage SDK
+9) npm install jsonwebtoken@7.4.0 --save => Instala o pacote do JWT para ser utilizado com a API
